@@ -1,49 +1,49 @@
 # Задача № 2
 
-## class Student:
-    def __init__(self, name, surname, gender):
-        self.name = name
-        self.surname = surname
-        self.gender = gender
-        self.finished_courses = []
-        self.courses_in_progress = []
-        self.grades = {}
+    class Student:
+        def __init__(self, name, surname, gender):
+            self.name = name
+            self.surname = surname
+            self.gender = gender
+            self.finished_courses = []
+            self.courses_in_progress = []
+            self.grades = {}
 
-    def add_courses(self, course_name):
-        self.finished_courses.append(course_name)
+        def add_courses(self, course_name):
+            self.finished_courses.append(course_name)
 
-    def rates_hw(self, lecturer, course, grade):
-        if isinstance(lecturer, Lecturer) and course in lecturer.courses_attached and course in self.courses_in_progress:
-            if course in lecturer.grades:
-                lecturer.grades[course] += [grade]
+        def rates_hw(self, lecturer, course, grade):
+            if isinstance(lecturer, Lecturer) and course in lecturer.courses_attached and course in self.courses_in_progress:
+                if course in lecturer.grades:
+                    lecturer.grades[course] += [grade]
+                else:
+                    lecturer.grades[course] = [grade]
             else:
-                lecturer.grades[course] = [grade]
-        else:
-            return 'Ошибка'
+                return 'Ошибка'
 
 
-class Mentor:
-    def __init__(self, name, surname):
-        self.name = name
-        self.surname = surname
-        self.courses_attached = []
+    class Mentor:
+        def __init__(self, name, surname):
+            self.name = name
+            self.surname = surname
+            self.courses_attached = []
 
-    def add_coursese(self, course_names):
-        self.courses_attached.append(course_names)
+        def add_coursese(self, course_names):
+            self.courses_attached.append(course_names)
 
 
 
-class Lecturer(Mentor):
-    def __init__(self):
-        self.grades = {}
+    class Lecturer(Mentor):
+        def __init__(self):
+            self.grades = {}
 
 
-class Reviewer(Mentor):
-    def rate_hw(self, student, course, grade):
-        if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
-            if course in student.grades:
-                student.grades[course] += [grade]
+    class Reviewer(Mentor):
+        def rate_hw(self, student, course, grade):
+            if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
+                if course in student.grades:
+                    student.grades[course] += [grade]
+                else:
+                    student.grades[course] = [grade]
             else:
-                student.grades[course] = [grade]
-        else:
-            return 'Ошибка'
+                return 'Ошибка'
